@@ -5,6 +5,12 @@ import (
 	"math"
 )
 
+/*
+	Assumptions
+	- numbers to be multiplied are of the same length, n
+	- n is a power of 2
+*/
+
 func numberLength(i float64) int {
 	return int(math.Log10(i) + 1)
 }
@@ -19,7 +25,6 @@ func splitNumber(i float64, len int) (float64, float64) {
 }
 
 func recursiveIntegerMultiplication(x float64, y float64) float64 {
-	// assuming x and y are of the same length
 	n := numberLength(x)
 	if n == 1 {
 		return x * y
