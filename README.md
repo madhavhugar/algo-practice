@@ -2,3 +2,4 @@
 
 - Chapter1:
   - [Recursive integer multiplication](chapter1/recursiveIntMultiplication.go)
+  - [Karatsuba multiplication](chapter1/karatsubaMultiplication.go)
