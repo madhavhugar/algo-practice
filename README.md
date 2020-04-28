@@ -8,4 +8,4 @@
 
 - Chapter3:
   - [Straightforward Matrix Multiplication](chapter3/matrixMultiplication.go) => [tests](chapter3/matrixMultiplication_test.go)
-  
+  - [Recusive Matrix Multiplication](chapter3/recursiveMatrixMultiplication.go) => [tests](chapter3/recursiveMatrixMultiplication_test.go)
