@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func matrixMultiplication(a [][]int, b [][]int, n int) [][]int {
 	var sum int
 	c := make([][]int, n)
