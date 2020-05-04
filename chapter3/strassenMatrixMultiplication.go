@@ -1,12 +1,10 @@
 package main
 
-import "fmt"
-
 type matrixDimensions struct {
-	x0 int;
-	x1 int;
-	y0 int;
-	y1 int;
+	x0 int
+	x1 int
+	y0 int
+	y1 int
 }
 
 func initialize2DMatrixStrassen(x int, y int) [][]int {
@@ -46,14 +44,14 @@ func copyValuesIntoSubMatrix(actual *[][]int, sub *[][]int, dim *matrixDimension
 }
 
 func splitIntoSubMatricesStrassen(z [][]int, n int) ([][]int, [][]int, [][]int, [][]int) {
-	a := initialize2DMatrixStrassen(n, n)
-	b := initialize2DMatrixStrassen(n, n)
-	c := initialize2DMatrixStrassen(n, n)
-	d := initialize2DMatrixStrassen(n, n)
-	copyValuesIntoSubMatrix(&z, &a, &matrixDimensions{x0: 0, x1: n/2, y0: 0, y1: n/2})
-	copyValuesIntoSubMatrix(&z, &b, &matrixDimensions{x0: 0, x1: n/2, y0: n/2, y1: n})
-	copyValuesIntoSubMatrix(&z, &c, &matrixDimensions{x0: n/2, x1: n, y0: 0, y1: n/2})
-	copyValuesIntoSubMatrix(&z, &d, &matrixDimensions{x0: n/2, x1: n, y0: n/2, y1: n})
+	a := initialize2DMatrixStrassen(n/2, n/2)
+	b := initialize2DMatrixStrassen(n/2, n/2)
+	c := initialize2DMatrixStrassen(n/2, n/2)
+	d := initialize2DMatrixStrassen(n/2, n/2)
+	copyValuesIntoSubMatrix(&z, &a, &matrixDimensions{x0: 0, x1: n / 2, y0: 0, y1: n / 2})
+	copyValuesIntoSubMatrix(&z, &b, &matrixDimensions{x0: 0, x1: n / 2, y0: n / 2, y1: n})
+	copyValuesIntoSubMatrix(&z, &c, &matrixDimensions{x0: n / 2, x1: n, y0: 0, y1: n / 2})
+	copyValuesIntoSubMatrix(&z, &d, &matrixDimensions{x0: n / 2, x1: n, y0: n / 2, y1: n})
 	return a, b, c, d
 }
 
@@ -67,24 +65,24 @@ func copyValuesIntoParentMatrixStrassen(parent *[][]int, sub *[][]int, dim *matr
 
 func combineSubMatricesIntoMatrixStrassen(a [][]int, b [][]int, c [][]int, d [][]int, n int) [][]int {
 	z := initialize2DMatrixStrassen(n, n)
-	copyValuesIntoParentMatrixStrassen(&z, &a, &matrixDimensions{x0: 0, x1: n/2, y0: 0, y1: n/2})
-	copyValuesIntoParentMatrixStrassen(&z, &b, &matrixDimensions{x0: 0, x1: n/2, y0: n/2, y1: n})
-	copyValuesIntoParentMatrixStrassen(&z, &c, &matrixDimensions{x0: n/2, x1: n, y0: 0, y1: n/2})
-	copyValuesIntoParentMatrixStrassen(&z, &d, &matrixDimensions{x0: n/2, x1: n, y0: n/2, y1: n})
+	copyValuesIntoParentMatrixStrassen(&z, &a, &matrixDimensions{x0: 0, x1: n / 2, y0: 0, y1: n / 2})
+	copyValuesIntoParentMatrixStrassen(&z, &b, &matrixDimensions{x0: 0, x1: n / 2, y0: n / 2, y1: n})
+	copyValuesIntoParentMatrixStrassen(&z, &c, &matrixDimensions{x0: n / 2, x1: n, y0: 0, y1: n / 2})
+	copyValuesIntoParentMatrixStrassen(&z, &d, &matrixDimensions{x0: n / 2, x1: n, y0: n / 2, y1: n})
 	return z
 }
 
 func strassenMatrixMultiplication(x [][]int, y [][]int, n int) [][]int {
 	// Base condition
 	if n == 1 {
-		z := initialize2DMatrixStrassen(1,1)
+		z := initialize2DMatrixStrassen(1, 1)
 		z[0][0] = x[0][0] * y[0][0]
 		return z
 	}
 	// split x into sub-matrices
-	a,b,c,d := splitIntoSubMatricesStrassen(x, n/2)
+	a, b, c, d := splitIntoSubMatricesStrassen(x, n)
 	// split y into sub-matrices
-	e,f,g,h := splitIntoSubMatricesStrassen(y, n/2)
+	e, f, g, h := splitIntoSubMatricesStrassen(y, n)
 
 	// selectively multiply according to strassen's formula
 	//	P1 = A · (F - H)
@@ -108,7 +106,7 @@ func strassenMatrixMultiplication(x [][]int, y [][]int, n int) [][]int {
 	gh := addMatricesStrassen(g, h, n/2)
 	p6 := strassenMatrixMultiplication(bd, gh, n/2)
 	// P7 = (A - C) · (E + F)
-	ac := substractMatricesStrassen(a ,c, n/2)
+	ac := substractMatricesStrassen(a, c, n/2)
 	ef := addMatricesStrassen(e, f, n/2)
 	p7 := strassenMatrixMultiplication(ac, ef, n/2)
 
@@ -116,13 +114,12 @@ func strassenMatrixMultiplication(x [][]int, y [][]int, n int) [][]int {
 	/*
 		P5 + P4 - P2 + P6 	| 			P1 + P2
 		----------------------------------------------
-					P3 + P4 			| P1 + P5 - P3 - P7 
+					P3 + P4 			| P1 + P5 - P3 - P7
 	*/
-	firstQuadrant := substractMatricesStrassen(addMatricesStrassen(p5, p4, n/2), addMatricesStrassen(p2, p6, n/2), n/2)
+	firstQuadrant := substractMatricesStrassen(addMatricesStrassen(addMatricesStrassen(p5, p4, n/2), p6, n/2), p2, n/2)
 	secondQuadrant := addMatricesStrassen(p1, p2, n/2)
 	thirdQuadrant := addMatricesStrassen(p3, p4, n/2)
-	fourthQuadrant := substractMatricesStrassen(addMatricesStrassen(p1, p5, n/2), substractMatricesStrassen(p3, p7, n/2), n/2)
+	fourthQuadrant := substractMatricesStrassen(addMatricesStrassen(p1, p5, n/2), addMatricesStrassen(p3, p7, n/2), n/2)
 	res := combineSubMatricesIntoMatrixStrassen(firstQuadrant, secondQuadrant, thirdQuadrant, fourthQuadrant, n)
-	fmt.Println("res", res)
 	return res
 }
