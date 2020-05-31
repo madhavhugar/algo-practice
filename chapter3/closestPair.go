@@ -1,19 +1,10 @@
 package main
 
+import "math"
+
 type Point struct {
 	x float64
 	y float64
-}
-
-func mergeSortPoints(points []Point, mergeFunc func([]Point, []Point) []Point) []Point {
-	if len(points) == 1 {
-		return points
-	}
-	a, b := splitPointsList(points)
-	c := mergeSortPoints(a, mergeFunc)
-	d := mergeSortPoints(b, mergeFunc)
-
-	return mergeFunc(c, d)
 }
 
 func splitPointsList(points []Point) ([]Point, []Point) {
@@ -56,12 +47,12 @@ func mergeListOfPointsSortedByYCoordinate(a []Point, b []Point) []Point {
 		if j >= halfLen {
 			c[i] = b[k]
 			k++
-		} else if b[k].y < a[j].y {
-			c[i] = b[k]
-			k++
 		} else if k >= halfLen {
 			c[i] = a[j]
 			j++
+		} else if b[k].y < a[j].y {
+			c[i] = b[k]
+			k++
 		} else {
 			c[i] = a[j]
 			j++
@@ -70,14 +61,62 @@ func mergeListOfPointsSortedByYCoordinate(a []Point, b []Point) []Point {
 	return c
 }
 
-// func closestPairBaseCase(points []Point, len int) {
-// 	for i := 0; i < len; i++ {
+func mergeSortPoints(points []Point, mergeFunc func([]Point, []Point) []Point) []Point {
+	if len(points) == 1 {
+		return points
+	}
+	a, b := splitPointsList(points)
+	c := mergeSortPoints(a, mergeFunc)
+	d := mergeSortPoints(b, mergeFunc)
 
-// 	}
-// }
+	return mergeFunc(c, d)
+}
 
-// func closestPairOfPoints(pX []Point, pY []Point, len int) {
-// 	if len <= 3 {
-// 		return closestPairBaseCase(pX, len)
-// 	}
-// }
+func sortPairOfPointsByX(p1 Point, p2 Point) (Point, Point) {
+	if p1.x < p2.x {
+		return p1, p2
+	}
+	return p2, p1
+}
+
+func computeEucledianDistanceSquare(p1 Point, p2 Point) float64 {
+	return math.Pow(p1.x-p2.x, 2) + math.Pow(p1.y-p2.y, 2)
+}
+
+func closestPairBaseCase(points []Point) (Point, Point) {
+	length := len(points)
+	min := math.Inf(1)
+	var p1, p2 Point
+	var dist float64
+	for i := 0; i < length-1; i++ {
+		for j := i + 1; j < length; j++ {
+			dist = computeEucledianDistanceSquare(points[i], points[j])
+			if dist < min {
+				min = dist
+				p1, p2 = points[i], points[j]
+			}
+		}
+	}
+	return sortPairOfPointsByX(p1, p2)
+}
+
+func closestPairOfPoints(px []Point, py []Point) (Point, Point) {
+	length := len(px)
+	halfLen := length / 2
+	if length <= 3 {
+		return closestPairBaseCase(px)
+	}
+	pxSortedByX := mergeSortPoints(px[:halfLen], mergeListOfPointsSortedByXCoordinate)
+	pxSortedByY := mergeSortPoints(px[:halfLen], mergeListOfPointsSortedByYCoordinate)
+	l1, l2 := closestPairOfPoints(pxSortedByX, pxSortedByY)
+	minDistLeftPair := computeEucledianDistanceSquare(l1, l2)
+	pySortedByX := mergeSortPoints(px[halfLen:], mergeListOfPointsSortedByXCoordinate)
+	pySortedByY := mergeSortPoints(px[halfLen:], mergeListOfPointsSortedByYCoordinate)
+	r1, r2 := closestPairOfPoints(pySortedByX, pySortedByY)
+	minDistRightPair := computeEucledianDistanceSquare(r1, r2)
+
+	if minDistLeftPair < minDistRightPair {
+		return l1, l2
+	}
+	return r1, r2
+}
