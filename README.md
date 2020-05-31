@@ -11,3 +11,5 @@
   - [Recusive Matrix Multiplication](chapter3/recursiveMatrixMultiplication.go) => [tests](chapter3/recursiveMatrixMultiplication_test.go)
   - [Strassen Matrix Multiplication](chapter3/strassenMatrixMultiplication.go) => [tests](chapter3/strassenMatrixMultiplication_test.go)
   - [Count Inversions](chapter3/countInversions.go) => [tests](chapter3/countInversions_test.go)
+  - [Closest Pair of Points - Brute force](chapter3/closestPairBruteForce) => [tests](chapter3/closestPairBruteForce_test.go)
+  - [Closest Pair of Points - Divide and conquer](chapter3/closestPair) => [tests](chapter3/closestPair_test.go)
