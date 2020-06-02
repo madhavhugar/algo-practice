@@ -28,11 +28,11 @@ func TestClosestPair(t *testing.T) {
 	assert.Equal(t, wantedP1, gotP1)
 	assert.Equal(t, wantedP2, gotP2)
 	// When the closest pair is a split pair
-	// points = []Point{{1, 1}, {2, 2}, {4, 4}, {6, 6}, {8, 8}, {10, 10}, {12, 12}, {14, 14}}
-	// gotP1, gotP2 = closestPairOfPoints(points, points)
-	// wantedP1, wantedP2 = Point{1, 1}, Point{2, 2}
-	// assert.Equal(t, wantedP1, gotP1)
-	// assert.Equal(t, wantedP2, gotP2)
+	points = []Point{{-1, -1}, {2, 2}, {5, 5}, {6, 6}, {8, 8}, {10, 10}, {12, 12}, {14, 14}}
+	gotP1, gotP2 = closestPairOfPoints(points, points)
+	wantedP1, wantedP2 = Point{5, 5}, Point{6, 6}
+	assert.Equal(t, wantedP1, gotP1)
+	assert.Equal(t, wantedP2, gotP2)
 }
 
 func TestClosestPairBaseCase(t *testing.T) {
@@ -49,6 +49,23 @@ func TestClosestPairBaseCase(t *testing.T) {
 	assert.Equal(t, cp2, gotP2)
 }
 
+func TestClosestPairSplitPoints(t *testing.T) {
+	points := []Point{{0, 0}, {2, 2}, {4, 4}, {6, 6}, {7, 7}, {10, 10}, {12, 12}, {14, 14}}
+	minDist := 4.0
+	gotP1, gotP2 := closestPairSplitPoints(points, points, minDist)
+	wantedP1, wantedP2 := Point{6, 6}, Point{7, 7}
+	assert.Equal(t, wantedP1, gotP1)
+	assert.Equal(t, wantedP2, gotP2)
+}
+
+func TestFilterPointsWithinMinDistance(t *testing.T) {
+	points := []Point{{1, 1}, {2, 2}, {4, 4}, {6, 6}, {8, 8}, {10, 10}, {12, 12}, {14, 14}}
+	minDistSquared := 4.0
+	got := filterPointsWithinMinDistance(Point{6, 6}, points, minDistSquared)
+	wanted := []Point{{4, 4}, {6, 6}, {8, 8}}
+	assert.Equal(t, wanted, got)
+}
+
 func TestComputeEucledianDistanceSquare(t *testing.T) {
 	p1, p2 := Point{1, 2}, Point{2, 1}
 	wanted := 2.0
@@ -62,6 +79,17 @@ func TestSortPairOfPointsByX(t *testing.T) {
 	gotP1, gotP2 := sortPairOfPointsByX(p1, p2)
 	assert.Equal(t, gotP1, p2)
 	assert.Equal(t, gotP2, p1)
+}
+
+func TestShortestPairOfPoints(t *testing.T) {
+	line1 := Line{Point{4, 4}, Point{6, 6}}
+	line2 := Line{Point{10, 10}, Point{12, 12}}
+	line3 := Line{Point{1, 1}, Point{2, 2}}
+	gotP1, gotP2, gotMin := shortestPairOfPoints(line1, line2, line3)
+	wantedP1, wantedP2 := Point{1, 1}, Point{2, 2}
+	assert.Equal(t, wantedP1, gotP1)
+	assert.Equal(t, wantedP2, gotP2)
+	assert.Greater(t, gotMin, -1.0)
 }
 
 func TestMergeSortPoints(t *testing.T) {

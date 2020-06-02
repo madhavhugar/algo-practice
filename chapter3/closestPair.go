@@ -1,10 +1,19 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
+// Point represents a geometric point with x & y values
 type Point struct {
 	x float64
 	y float64
+}
+
+// Line represents a pair of points & a geometric line
+type Line struct {
+	p1 Point
+	p2 Point
 }
 
 func splitPointsList(points []Point) ([]Point, []Point) {
@@ -100,6 +109,40 @@ func closestPairBaseCase(points []Point) (Point, Point) {
 	return sortPairOfPointsByX(p1, p2)
 }
 
+func filterPointsWithinMinDistance(medianPoint Point, py []Point, minDist float64) []Point {
+	medianXCoordinate := medianPoint.x
+	var filteredPoints []Point
+	for i := 0; i < len(py); i++ {
+		p1 := py[i]
+		p2 := Point{medianXCoordinate, py[i].y}
+		dist := computeEucledianDistanceSquare(p1, p2)
+		if dist <= minDist {
+			filteredPoints = append(filteredPoints, py[i])
+		}
+	}
+	return filteredPoints
+}
+
+func closestPairSplitPoints(px []Point, py []Point, minDist float64) (Point, Point) {
+	medianPoint := px[len(px)/2-1]
+	filteredPoints := filterPointsWithinMinDistance(medianPoint, py, minDist)
+	return closestPairBaseCase(filteredPoints)
+}
+
+func shortestPairOfPoints(lines ...Line) (Point, Point, float64) {
+	var m1, m2 Point
+	min := math.MaxFloat64
+
+	for _, line := range lines {
+		dist := computeEucledianDistanceSquare(line.p1, line.p2)
+		if dist < min {
+			m1, m2 = line.p1, line.p2
+			min = dist
+		}
+	}
+	return m1, m2, min
+}
+
 func closestPairOfPoints(px []Point, py []Point) (Point, Point) {
 	length := len(px)
 	halfLen := length / 2
@@ -114,9 +157,17 @@ func closestPairOfPoints(px []Point, py []Point) (Point, Point) {
 	pySortedByY := mergeSortPoints(px[halfLen:], mergeListOfPointsSortedByYCoordinate)
 	r1, r2 := closestPairOfPoints(pySortedByX, pySortedByY)
 	minDistRightPair := computeEucledianDistanceSquare(r1, r2)
-
+	var minDist float64
 	if minDistLeftPair < minDistRightPair {
-		return l1, l2
+		minDist = minDistLeftPair
+	} else {
+		minDist = minDistRightPair
 	}
-	return r1, r2
+	s1, s2 := closestPairSplitPoints(px, py, minDist)
+	lines := []Line{{l1, l2}, {r1, r2}, {s1, s2}}
+	m1, m2, min := shortestPairOfPoints(lines...)
+	if min == 0.0 {
+		m1, m2, _ = shortestPairOfPoints([]Line{{l1, l2}, {r1, r2}}...)
+	}
+	return m1, m2
 }
