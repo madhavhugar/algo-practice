@@ -13,3 +13,4 @@
   - [Count Inversions](chapter3/countInversions.go) => [tests](chapter3/countInversions_test.go)
   - [Closest Pair of Points - Brute force](chapter3/closestPairBruteForce.go) => [tests](chapter3/closestPairBruteForce_test.go)
   - [Closest Pair of Points - Divide and conquer](chapter3/closestPair.go) => [tests](chapter3/closestPair_test.go)
+  - [Finding maximum number in a unimodal array](chapter3/maxNumberUnimodalArray.go) => [tests](chapter3/maxNumberUnimodalArray_test.go)
