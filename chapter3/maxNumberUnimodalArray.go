@@ -1,14 +1,16 @@
 package main
 
+// Problem 3.2
+// How a unimodal array looks like
+// [ascending, max, descending] or [max, descending] or [ascending, max]
+// Compute the maximum element of a unimodal array
+
 func maxInt(a, b int) int {
 	if a >= b {
 		return a
 	}
 	return b
 }
-
-// How a unimodal array looks like
-// [ascending, max, descending]
 
 func maxNumInUniModalList(nums []int) int {
 	length := len(nums)
