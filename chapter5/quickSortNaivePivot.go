@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func quickSortNaivePivot(nums []int, beg int, end int) {
 	if beg >= end {
 		return
@@ -17,5 +15,4 @@ func quickSortNaivePivot(nums []int, beg int, end int) {
 	nums[i-1], nums[beg] = nums[beg], nums[i-1]
 	quickSortNaivePivot(nums, beg, i-1)
 	quickSortNaivePivot(nums, i, end)
-	fmt.Println("after:nums", nums)
 }
