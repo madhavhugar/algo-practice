@@ -19,5 +19,7 @@
 - Chapter5:
   - TODO [Quick sort with space complexity > O(1) + naive pivot picking]
   - [Quick sort with in place swapping => space complexity == O(1) + naive pivot picking](chapter5/quickSortNaivePivot.go) => [tests](chapter5/quickSortNaivePivot_test.go)
+  - [Quick sort with in place swapping => space complexity == O(1) + last element as pivot](chapter5/quickSortLastElementPivot.go) => [tests](chapter5/quickSortLastElementPivot_test.go)
+  - [Quick sort with in place swapping => space complexity == O(1) + last element as pivot v2](chapter5/quickSortLastElementPivotv2.go) => [tests](chapter5/quickSortLastElementPivotv2_test.go)
   - TODO [Quick sort with in place swapping => space complexity == O(1) + overkill pivot picking]
   - TODO [Quick sort with in place swapping => space complexity == O(1) + randomized pivot picking]
