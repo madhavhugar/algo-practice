@@ -26,4 +26,4 @@
 
 - Chapter 6 - Linear Time Selection:
   - [Reducing Selection to Sorting (using MergeSort)](chapter6/rselectMergeSort.go) => [tests](chapter6/rselectMergeSort_test.go)
-  - [RSelect](chapter6/rselectQuickSort.go) => [tests](chapter6/rselectQuickSort.go)
+  - [RSelect](chapter6/rselect.go) => [tests](chapter6/rselect_test.go)
