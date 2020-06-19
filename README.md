@@ -23,3 +23,7 @@
   - [Quick sort with in place swapping => space complexity == O(1) + last element as pivot v2](chapter5/quickSortLastElementPivotv2.go) => [tests](chapter5/quickSortLastElementPivotv2_test.go)
   - [Quick sort with in place swapping => space complexity == O(1) + 3 number median pivot picking](chapter5/quickSortMedianPivot.go) => [tests](chapter5/quickSortMedianPivot_test.go)
   - TODO [Quick sort with in place swapping => space complexity == O(1) + randomized pivot picking]
+
+- Chapter 6 - Linear Time Selection:
+  - [] [Reducing Selection to Sorting (using MergeSort)](chapter6/rselectMergeSort.go) => [tests](chapter6/rselectMergeSort_test.go)
+  - [] [RSelect](chapter6/rselectQuickSort.go) => [tests](chapter6/rselectQuickSort.go)
