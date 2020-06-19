@@ -25,5 +25,5 @@
   - TODO [Quick sort with in place swapping => space complexity == O(1) + randomized pivot picking]
 
 - Chapter 6 - Linear Time Selection:
-  - [] [Reducing Selection to Sorting (using MergeSort)](chapter6/rselectMergeSort.go) => [tests](chapter6/rselectMergeSort_test.go)
-  - [] [RSelect](chapter6/rselectQuickSort.go) => [tests](chapter6/rselectQuickSort.go)
+  - [Reducing Selection to Sorting (using MergeSort)](chapter6/rselectMergeSort.go) => [tests](chapter6/rselectMergeSort_test.go)
+  - [RSelect](chapter6/rselectQuickSort.go) => [tests](chapter6/rselectQuickSort.go)
