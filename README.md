@@ -27,3 +27,7 @@
 - Chapter 6 - Linear Time Selection:
   - [Reducing Selection to Sorting (using MergeSort)](chapter6/rselectMergeSort.go) => [tests](chapter6/rselectMergeSort_test.go)
   - [RSelect](chapter6/rselect.go) => [tests](chapter6/rselect_test.go)
+
+- Chpater 7 - Graphs: The Basics
+  - [Representing (simple undirected) graphs using Adjacency List](chapter7/adjacencyList.go)
+  - [Representing (simple undirected) graphs using Adjacency Matrix](chapter7/adjacencyMatrix.go)
