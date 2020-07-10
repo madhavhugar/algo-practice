@@ -6,7 +6,7 @@ type adjacencyMatrix struct {
 	vertices [][]int
 }
 
-func main() {
+func adjacencyMatrixPrint() {
 	// We represent a simple undirected graph
 	// =1=-----=2=
 	fmt.Println("two vertex graph")

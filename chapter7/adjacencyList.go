@@ -11,7 +11,7 @@ type adjacencyList struct {
 	vertices []vertex
 }
 
-func main() {
+func adjacencyListPrint() {
 	// We represent a simple undirected graph
 	// =1=-----=2=
 	fmt.Println("two vertex graph")
