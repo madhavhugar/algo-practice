@@ -31,3 +31,6 @@
 - Chpater 7 - Graphs: The Basics
   - [Representing (simple undirected) graphs using Adjacency List](chapter7/adjacencyList.go)
   - [Representing (simple undirected) graphs using Adjacency Matrix](chapter7/adjacencyMatrix.go)
+
+- Chapter 8 - Graph Search and its Applications
+  - [Generic Graph Search](chapter8/genericGraphSearch.go) => [tests](chapter8/genericGraphSearch_test.go)
