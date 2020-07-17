@@ -34,3 +34,4 @@
 
 - Chapter 8 - Graph Search and its Applications
   - [Generic Graph Search](chapter8/genericGraphSearch.go) => [tests](chapter8/genericGraphSearch_test.go)
+  - [Breadth First Search](chapter8/breadthFirstSearch.go) => [tests](chapter8/breadthFirstSearch_test.go)
