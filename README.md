@@ -36,3 +36,4 @@
   - [Generic Graph Search](chapter8/genericGraphSearch.go) => [tests](chapter8/genericGraphSearch_test.go)
   - [Breadth First Search](chapter8/breadthFirstSearch.go) => [tests](chapter8/breadthFirstSearch_test.go)
   - [Shortest Paths using BFS](chapter8/shortestPathsBFS.go) => [tests](chapter8/shortestPathsBFS_test.go)
+  - [Compute Connected Components for Undirected Graph](chapter8/undirectedConnectedComponents.go) => [tests](chapter8/undirectedConnectedComponents_test.go)
