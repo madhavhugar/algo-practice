@@ -38,3 +38,4 @@
   - [Shortest Paths using BFS](chapter8/shortestPathsBFS.go) => [tests](chapter8/shortestPathsBFS_test.go)
   - [Compute Connected Components for Undirected Graph](chapter8/undirectedConnectedComponents.go) => [tests](chapter8/undirectedConnectedComponents_test.go)
   - [Depth first search](chapter8/depthFirstSearch.go) => [tests](chapter8/depthFirstSearch_test.go)
+  - [Depth first search recursive](chapter8/depthFirstSearchRecursive.go) => [tests](chapter8/depthFirstSearchRecursive_test.go)
