@@ -40,3 +40,4 @@
   - [Depth first search](chapter8/depthFirstSearch.go) => [tests](chapter8/depthFirstSearch_test.go)
   - [Depth first search recursive](chapter8/depthFirstSearchRecursive.go) => [tests](chapter8/depthFirstSearchRecursive_test.go)
   - [Topological Sort using Depth First Search for Directed Acyclic Graphs](chapter8/dfsTopologicalOrder.go) => [tests](chapter8/dfsTopologicalOrder_test.go)
+  - [Kosaraju algorithm for finding strongly connected components in a DG](chapter8/kosaraju.go) => [tests](chapter8/kosaraju_test.go)
