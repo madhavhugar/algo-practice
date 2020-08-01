@@ -22,7 +22,18 @@ func dfsPlus(graph Graph, startingVertex *Vertex) {
 	}
 }
 
+func kosaraju(graph Graph) {
+	order := topoSortReverse(graph)
+	resetGraphAsUnexplored(graph)
+	sccNum = len(graph.Vertices)
+	for _, vertex := range order {
+		dfsPlus(graph, vertex)
+		sccNum--
+	}
+}
+
 var order []*Vertex
+var orderNum int
 
 func dfsReverse(graph Graph, startingVertex *Vertex) {
 	if startingVertex.Explored {
@@ -35,13 +46,13 @@ func dfsReverse(graph Graph, startingVertex *Vertex) {
 			order = append(order, startingVertex)
 		}
 	}
-	startingVertex.Value = sccNum
-	sccNum--
+	startingVertex.Value = orderNum
+	orderNum--
 	order = append([]*Vertex{startingVertex}, order...)
 }
 
 func topoSortReverse(graph Graph) []*Vertex {
-	sccNum = len(graph.Vertices)
+	orderNum = len(graph.Vertices)
 	for _, vertex := range graph.Vertices {
 		if !vertex.Explored {
 			dfsReverse(graph, vertex)
