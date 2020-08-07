@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestDijkstraShortestPath(t *testing.T) {
+func TestDjakstraShortestPathDirected(t *testing.T) {
 	frankfurt := Vertex{0, false}
 	stuttgart := Vertex{0, false}
 	cologne := Vertex{0, false}
@@ -24,11 +24,33 @@ func TestDijkstraShortestPath(t *testing.T) {
 		Edge{400, &cologne, &berlin},
 	}
 	graph := Graph{vertices, edges}
-	dijkstraShortestPath(graph, &frankfurt)
+	djakstraShortestPathDirected(graph, &frankfurt)
 	assert.Equal(t, 0, frankfurt.totalDistance)
 	assert.Equal(t, 100, stuttgart.totalDistance)
 	assert.Equal(t, 200, cologne.totalDistance)
-	assert.Equal(t, 400, stuttgart.totalDistance)
+	assert.Equal(t, 400, berlin.totalDistance)
+
+	home := Vertex{0, false}
+	a := Vertex{0, false}
+	b := Vertex{0, false}
+	school := Vertex{0, false}
+	vertices = Vertices{
+		&home,
+		&a,
+		&b,
+		&school,
+	}
+	edges = Edges{
+		Edge{1, &home, &a},
+		Edge{4, &home, &b},
+		Edge{2, &a, &b},
+		Edge{6, &a, &school},
+		Edge{3, &b, &school},
+	}
+	graph = Graph{vertices, edges}
+	djakstraShortestPathDirected(graph, &home)
+	assert.Equal(t, 0, home.totalDistance)
+	assert.Equal(t, 6, school.totalDistance)
 }
 
 func TestElementExists(t *testing.T) {

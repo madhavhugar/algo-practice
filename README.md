@@ -41,3 +41,4 @@
   - [Depth first search recursive](chapter8/depthFirstSearchRecursive.go) => [tests](chapter8/depthFirstSearchRecursive_test.go)
   - [Topological Sort using Depth First Search for Directed Acyclic Graphs](chapter8/dfsTopologicalOrder.go) => [tests](chapter8/dfsTopologicalOrder_test.go)
   - [Kosaraju algorithm for finding strongly connected components in a DG](chapter8/kosaraju.go) => [tests](chapter8/kosaraju_test.go)
+  - [Djakstra's Shortest Path for Directed Graph](chapter9/djakstraShortestPathDirected.go) => [tests](chapter9/djakstraShortestPathDirected_test.go)
