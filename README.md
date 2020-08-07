@@ -28,7 +28,7 @@
   - [Reducing Selection to Sorting (using MergeSort)](chapter6/rselectMergeSort.go) => [tests](chapter6/rselectMergeSort_test.go)
   - [RSelect](chapter6/rselect.go) => [tests](chapter6/rselect_test.go)
 
-- Chpater 7 - Graphs: The Basics
+- Chapter 7 - Graphs: The Basics
   - [Representing (simple undirected) graphs using Adjacency List](chapter7/adjacencyList.go)
   - [Representing (simple undirected) graphs using Adjacency Matrix](chapter7/adjacencyMatrix.go)
 
@@ -41,4 +41,6 @@
   - [Depth first search recursive](chapter8/depthFirstSearchRecursive.go) => [tests](chapter8/depthFirstSearchRecursive_test.go)
   - [Topological Sort using Depth First Search for Directed Acyclic Graphs](chapter8/dfsTopologicalOrder.go) => [tests](chapter8/dfsTopologicalOrder_test.go)
   - [Kosaraju algorithm for finding strongly connected components in a DG](chapter8/kosaraju.go) => [tests](chapter8/kosaraju_test.go)
+
+- Chapter 9 - Dijkstra’s Shortest-Path Algorithm
   - [Djakstra's Shortest Path for Directed Graph](chapter9/djakstraShortestPathDirected.go) => [tests](chapter9/djakstraShortestPathDirected_test.go)
